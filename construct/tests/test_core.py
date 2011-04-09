@@ -1,6 +1,6 @@
 import unittest
 
-from .. import Struct, MetaField, StaticField, FormatField, Byte, FieldError
+from .. import Struct, MetaField, StaticField, FormatField, Container, Byte, FieldError
 
 class TestStaticField(unittest.TestCase):
 
@@ -22,6 +22,9 @@ class TestStaticField(unittest.TestCase):
     def test_build_too_short(self):
         self.assertRaises(FieldError, self.sf.build, "a")
 
+    def test_sizeof(self):
+        self.assertEqual(self.sf.sizeof(), 2)
+
 class TestFormatField(unittest.TestCase):
 
     def setUp(self):
@@ -41,6 +44,9 @@ class TestFormatField(unittest.TestCase):
 
     def test_build_too_long(self):
         self.assertRaises(FieldError, self.ff.build, 9e9999)
+
+    def test_sizeof(self):
+        self.assertEqual(self.ff.sizeof(), 4)
 
 class TestMetaField(unittest.TestCase):
 
@@ -62,11 +68,14 @@ class TestMetaField(unittest.TestCase):
     def test_build_too_short(self):
         self.assertRaises(FieldError, self.mf.build, "ab")
 
+    def test_sizeof(self):
+        self.assertEqual(self.mf.sizeof(), 3)
+
 class TestMetaFieldStruct(unittest.TestCase):
 
     def setUp(self):
-        self.s = Struct("foo", Byte("length"),
-            MetaField("data", lambda context: context["length"]))
+        self.mf = MetaField("data", lambda context: context["length"])
+        self.s = Struct("foo", Byte("length"), self.mf)
 
     def test_trivial(self):
         pass
@@ -79,3 +88,10 @@ class TestMetaFieldStruct(unittest.TestCase):
         c = self.s.parse("\x04ABCD")
         self.assertEqual(c.length, 4)
         self.assertEqual(c.data, "ABCD")
+
+    def test_sizeof_default(self):
+        self.assertRaises(SizeofError, self.mf.sizeof)
+
+    def test_sizeof(self):
+        context = Container(length=4)
+        self.assertEqual(self.mf.sizeof(context), 4)
