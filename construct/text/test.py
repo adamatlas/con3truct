@@ -15,10 +15,10 @@ class StringTransformator(AstTransformator):
         return AstNode("string", value = obj)
 
 class SymbolTransformator(AstTransformator):
-    keywords = set([
+    keywords = {
         "if", "for", "while", "else", "def", "import", "in", "and", "or",
         "not", "as", "from", "return", "const", "var",
-    ])
+    }
     def to_ast(self, obj, context):
         if obj in self.keywords:
             return AstNode("error", 

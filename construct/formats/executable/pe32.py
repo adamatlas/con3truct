@@ -33,7 +33,7 @@ class NamedSequence(Adapter):
     def __init__(self, subcon, mapping):
         Adapter.__init__(self, subcon)
         self.mapping = mapping
-        self.rev_mapping = dict((v, k) for k, v in mapping.items())
+        self.rev_mapping = {v: k for k, v in mapping.items()}
     def _encode(self, obj, context):
         d = obj.__dict__
         obj2 = [None] * len(d)

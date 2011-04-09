@@ -14,7 +14,7 @@ class HttpParamDictAdapter(Adapter):
     def _encode(self, obj, context):
         return [Container(name = k, value = v) for k, v in obj.items()]
     def _decode(self, obj, context):
-        return dict((o.name, o.value) for o in obj)
+        return {o.name: o.value for o in obj}
 
 
 lineterm = Literal("\r\n")

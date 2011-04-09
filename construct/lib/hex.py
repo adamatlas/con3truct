@@ -1,4 +1,4 @@
-_printable = dict((chr(i), ".") for i in range(256))
+_printable = {chr(i): "." for i in range(256)}
 _printable.update((chr(i), chr(i)) for i in range(32, 128))
 
 def hexdump(data, linesize = 16):
