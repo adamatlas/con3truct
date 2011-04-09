@@ -1,6 +1,6 @@
 import unittest
 
-from construct import String, PascalString, CString, UBInt16
+from .. import String, PascalString, CString, UBInt16
 
 class TestString(unittest.TestCase):
 
@@ -10,7 +10,7 @@ class TestString(unittest.TestCase):
 
     def test_parse_utf8(self):
         s = String("foo", 12, encoding="utf8")
-        self.assertEqual(s.parse("hello joh\xd4\x83n"), u"hello joh\u0503n")
+        self.assertEqual(s.parse("hello joh\xd4\x83n"), "hello joh\u0503n")
 
     def test_parse_padded(self):
         s = String("foo", 10, padchar="X", paddir="right")
@@ -30,7 +30,7 @@ class TestString(unittest.TestCase):
 
     def test_build_utf8(self):
         s = String("foo", 12, encoding="utf8")
-        self.assertEqual(s.build(u"hello joh\u0503n"), "hello joh\xd4\x83n")
+        self.assertEqual(s.build("hello joh\u0503n"), "hello joh\xd4\x83n")
 
     def test_build_padded(self):
         s = String("foo", 10, padchar="X", paddir="right")

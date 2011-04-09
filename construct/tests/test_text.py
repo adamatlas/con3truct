@@ -1,7 +1,7 @@
 import unittest
 
-from construct.text import Whitespace
-from construct import RangeError
+from ..text import Whitespace
+from .. import RangeError
 
 class TestWhitespace(unittest.TestCase):
 

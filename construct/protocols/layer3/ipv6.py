@@ -1,8 +1,8 @@
 """
 Internet Protocol version 6 (TCP/IP protocol stack)
 """
-from construct import *
-from ipv4 import ProtocolEnum
+from ... import *
+from .ipv4 import ProtocolEnum
 
 
 class Ipv6AddressAdapter(Adapter):
@@ -34,8 +34,8 @@ if __name__ == "__main__":
     o = ipv6_header.parse("\x6f\xf0\x00\x00\x01\x02\x06\x80"
         "0123456789ABCDEF" "FEDCBA9876543210"
         )
-    print o
-    print repr(ipv6_header.build(o))
+    print(o)
+    print(repr(ipv6_header.build(o)))
 
 
 

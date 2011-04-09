@@ -1,6 +1,6 @@
 import unittest
 
-from construct.lib.binary import (int_to_bin, bin_to_int, swap_bytes,
+from ..lib.binary import (int_to_bin, bin_to_int, swap_bytes,
     encode_bin, decode_bin)
 
 class TestBinary(unittest.TestCase):

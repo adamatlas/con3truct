@@ -1,4 +1,4 @@
-from construct import *
+from .. import *
 
 
 s = Aligned(
@@ -7,6 +7,6 @@ s = Aligned(
         Array(lambda ctx: ctx.length, Byte('x')),
     )
 )
-print Debugger(s).parse("\x03aaab")
+print(Debugger(s).parse("\x03aaab"))
 
 

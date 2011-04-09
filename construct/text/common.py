@@ -1,11 +1,10 @@
 """
 common constructs for typical programming languages (numbers, strings, ...)
 """
-from construct.core import (Construct, ConstructError, FieldError,
-    SizeofError)
-from construct.adapters import (Adapter, StringAdapter, IndexingAdapter,
-    ConstAdapter, OneOf, NoneOf)
-from construct.macros import (Field, OptionalGreedyRange, GreedyRange,
+from ..core import Construct, ConstructError, FieldError, SizeofError
+from ..adapters import (Adapter, StringAdapter, IndexingAdapter, ConstAdapter,
+    OneOf, NoneOf)
+from ..macros import (Field, OptionalGreedyRange, GreedyRange,
     Sequence, Optional)
 
 

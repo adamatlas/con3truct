@@ -3,8 +3,8 @@ Telnet (TCP/IP protocol stack)
 
 http://support.microsoft.com/kb/231866
 """
-from construct import *
-from construct.text import *
+from ... import *
+from ...text import *
 
 
 command_code = Enum(Byte("code"),
@@ -82,7 +82,8 @@ class LookaheadAdapter(Adapter):
         if obj == "\xff":
             obj = "\xff\xff"
         return obj
-    def _decode(self, (this, next), context):
+    def _decode(self, xxx_todo_changeme, context):
+        (this, next) = xxx_todo_changeme
         if this == "\xff":
             if next == "\xff":
                 return "\xff"
@@ -301,7 +302,7 @@ if __name__ == "__main__":
     "0820080820080820080820080820080820080820080820080820080820080820080820"
     "08082008082008082008082008082008082008082008082008082008"
     ).decode("hex")
-    print telnet_session.parse(cap1)
+    print(telnet_session.parse(cap1))
 
 
 

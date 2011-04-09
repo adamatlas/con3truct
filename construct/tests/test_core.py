@@ -1,8 +1,6 @@
 import unittest
 
-from construct import Struct, MetaField, StaticField, FormatField
-from construct import Byte
-from construct import FieldError
+from .. import Struct, MetaField, StaticField, FormatField, Byte, FieldError
 
 class TestStaticField(unittest.TestCase):
 

@@ -1,7 +1,7 @@
 """
 Internet Protocol version 4 (TCP/IP protocol stack)
 """
-from construct import *
+from ... import *
 
 
 class IpAddressAdapter(Adapter):
@@ -59,8 +59,8 @@ ipv4_header = Struct("ip_header",
 if __name__ == "__main__":
     cap = "4500003ca0e3000080116185c0a80205d474a126".decode("hex")
     obj = ipv4_header.parse(cap)
-    print obj
-    print repr(ipv4_header.build(obj))
+    print(obj)
+    print(repr(ipv4_header.build(obj)))
 
 
 

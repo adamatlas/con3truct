@@ -1,7 +1,7 @@
 """
 Ethernet (TCP/IP protocol stack)
 """
-from construct import *
+from ... import *
 
 
 class MacAddressAdapter(Adapter):
@@ -31,6 +31,6 @@ ethernet_header = Struct("ethernet_header",
 if __name__ == "__main__":
     cap = "0011508c283c0002e34260090800".decode("hex")
     obj = ethernet_header.parse(cap)
-    print obj
-    print repr(ethernet_header.build(obj))
+    print(obj)
+    print(repr(ethernet_header.build(obj)))
 

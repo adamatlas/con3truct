@@ -1,10 +1,11 @@
-from construct.lib import BitStreamReader, BitStreamWriter, encode_bin, decode_bin
-from construct.core import (Struct, MetaField, StaticField, FormatField,
+from .lib import BitStreamReader, BitStreamWriter, encode_bin, decode_bin
+from .core import (Struct, MetaField, StaticField, FormatField,
     OnDemand, Pointer, Switch, Value, RepeatUntil, MetaArray, Sequence, Range,
     Select, Pass, SizeofError, Buffered, Restream, Reconfig)
-from construct.adapters import (BitIntegerAdapter, PaddingAdapter,
+from .adapters import (BitIntegerAdapter, PaddingAdapter,
     ConstAdapter, CStringAdapter, LengthValueAdapter, IndexingAdapter,
     PaddedStringAdapter, FlagsAdapter, StringAdapter, MappingAdapter)
+import collections
 
 
 #===============================================================================
@@ -17,7 +18,7 @@ def Field(name, length):
       (StaticField), or a function that takes the context as an argument and
       returns the length (MetaField)
     """
-    if callable(length):
+    if isinstance(length, collections.Callable):
         return MetaField(name, length)
     else:
         return StaticField(name, length)
@@ -240,7 +241,7 @@ def Array(count, subcon):
     construct.core.RepeaterError: expected 4..4, found 5
     """
 
-    if callable(count):
+    if isinstance(count, collections.Callable):
         con = MetaArray(count, subcon)
     else:
         con = MetaArray(lambda ctx: count, subcon)
@@ -261,8 +262,8 @@ def PrefixedArray(subcon, length_field = UBInt8("length")):
     )
 
 def OpenRange(mincount, subcon):
-    from sys import maxint
-    return Range(mincount, maxint, subcon)
+    from sys import maxsize
+    return Range(mincount, maxsize, subcon)
 
 def GreedyRange(subcon):
     """
@@ -409,7 +410,7 @@ def SymmetricMapping(subcon, mapping, default = NotImplemented):
       default value is given, and exception is raised. setting to Pass would
       return the value "as is" (unmapped)
     """
-    reversed_mapping = dict((v, k) for k, v in mapping.iteritems())
+    reversed_mapping = dict((v, k) for k, v in mapping.items())
     return MappingAdapter(subcon,
         encoding = mapping,
         decoding = reversed_mapping,

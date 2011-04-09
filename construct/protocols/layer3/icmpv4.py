@@ -1,8 +1,8 @@
 """
 Internet Control Message Protocol for IPv4 (TCP/IP protocol stack)
 """
-from construct import *
-from ipv4 import IpAddress
+from ... import *
+from .ipv4 import IpAddress
 
 
 echo_payload = Struct("echo_payload",
@@ -80,9 +80,9 @@ if __name__ == "__main__":
         "63646566676869").decode("hex")
     cap3 = ("0301000000001122aabbccdd0102030405060708").decode("hex")
     
-    print icmp_header.parse(cap1)
-    print icmp_header.parse(cap2)
-    print icmp_header.parse(cap3)
+    print(icmp_header.parse(cap1))
+    print(icmp_header.parse(cap2))
+    print(icmp_header.parse(cap3))
 
 
 

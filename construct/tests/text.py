@@ -1,4 +1,4 @@
-from construct.text import *
+from ..text import *
 
 
 ws = Whitespace(" \t\r\n")
@@ -58,9 +58,9 @@ def eval2(node):
         return lhs / rhs
     assert False
 
-print expr.parse("(1 + 2)*3")
-print eval2(expr.parse("(1 + 2)*3"))
-print expr.build([[1, "+", 2], "*", 3])
+print(expr.parse("(1 + 2)*3"))
+print(eval2(expr.parse("(1 + 2)*3")))
+print(expr.build([[1, "+", 2], "*", 3]))
 
 
 

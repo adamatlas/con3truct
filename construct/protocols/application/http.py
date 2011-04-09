@@ -5,14 +5,14 @@ Construct is not meant for text manipulation, and is probably not the right
 tool for the job, but I wanted to demonstrate how this could be done using
 the provided `text` module.
 """
-from construct import *
-from construct.text import *
+from ... import *
+from ...text import *
 
 
 class HttpParamDictAdapter(Adapter):
     """turns the sequence of params into a dict"""
     def _encode(self, obj, context):
-        return [Container(name = k, value = v) for k, v in obj.iteritems()]
+        return [Container(name = k, value = v) for k, v in obj.items()]
     def _decode(self, obj, context):
         return dict((o.name, o.value) for o in obj)
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     "78e0402deb5ef4c1315a1470d0016a2cc09104438e70101520bd00c4044119844d0c08"
     "71d0f0c40c7549f1c506895102c61c53d1051125941010003b").decode("hex")
     x = http_session.parse(cap1)
-    print x
+    print(x)
     #print x.request.url
     #print x.request.params["Referer"]
     #print x.reply.params["Server"]

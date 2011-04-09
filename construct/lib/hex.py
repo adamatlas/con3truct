@@ -8,7 +8,7 @@ def hexdump(data, linesize = 16):
     else:
         fmt = "%%08X   %%-%ds   %%s"
     fmt = fmt % (3 * linesize - 1,)
-    for i in xrange(0, len(data), linesize):
+    for i in range(0, len(data), linesize):
         line = data[i : i + linesize]
         hextext = " ".join(b.encode("hex") for b in line)
         rawtext = "".join(_printable[b] for b in line)

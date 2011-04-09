@@ -1,7 +1,7 @@
 """
 Enhanced Meta File
 """
-from construct import *
+from ... import *
 
 
 record_type = Enum(ULInt32("record_type"),
@@ -161,7 +161,7 @@ emf_file = Struct("emf_file",
 
 if __name__ == "__main__":
     obj = emf_file.parse_stream(open("../../test/emf1.emf", "rb"))
-    print obj
+    print(obj)
 
 
 

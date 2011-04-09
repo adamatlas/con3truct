@@ -1,7 +1,7 @@
 """
 Windows Meta File
 """
-from construct import *
+from ... import *
 
 
 wmf_record = Struct("records",
@@ -83,7 +83,7 @@ wmf_file = Struct("wmf_file",
 
 if __name__ == "__main__":
     obj = wmf_file.parse_stream(open("../../test/wmf1.wmf", "rb"))
-    print obj
+    print(obj)
 
 
 

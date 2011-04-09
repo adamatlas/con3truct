@@ -1,7 +1,7 @@
 import unittest
 
-from construct import *
-from construct.text import *
+from .. import *
+from ..text import *
 
 class NodeAdapter(Adapter):
     def __init__(self, factory, subcon):
@@ -18,7 +18,7 @@ class Node(Container):
     def __init__(self, name, **kw):
         Container.__init__(self)
         self.name = name
-        for k, v in kw.iteritems():
+        for k, v in kw.items():
             setattr(self, k, v)
     
     def accept(self, visitor):

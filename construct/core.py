@@ -1,7 +1,6 @@
 from struct import Struct as Packer
-
-from lib import StringIO
-from lib import Container, ListContainer, AttrDict, LazyContainer
+from io import StringIO
+from .lib import Container, ListContainer, AttrDict, LazyContainer
 
 
 #===============================================================================
@@ -161,7 +160,7 @@ class Construct(object):
         Set this construct's state to a given state.
         """
 
-        for name, value in attrs.iteritems():
+        for name, value in attrs.items():
             setattr(self, name, value)
 
     def __copy__(self):
@@ -340,12 +339,12 @@ class FormatField(StaticField):
     def _parse(self, stream, context):
         try:
             return self.packer.unpack(_read_stream(stream, self.length))[0]
-        except Exception, ex:
+        except Exception as ex:
             raise FieldError(ex)
     def _build(self, obj, stream, context):
         try:
             _write_stream(stream, self.length, self.packer.pack(obj))
-        except Exception, ex:
+        except Exception as ex:
             raise FieldError(ex)
 
 class MetaField(Construct):
@@ -416,7 +415,7 @@ class MetaArray(Subconstruct):
                 while c < count:
                     obj.append(self.subcon._parse(stream, context))
                     c += 1
-        except ConstructError, ex:
+        except ConstructError as ex:
             raise ArrayError("expected %d, found %d" % (count, c), ex)
         return obj
     def _build(self, obj, stream, context):
@@ -501,7 +500,7 @@ class Range(Subconstruct):
                     pos = stream.tell()
                     obj.append(self.subcon._parse(stream, context))
                     c += 1
-        except ConstructError, ex:
+        except ConstructError as ex:
             if c < self.mincount:
                 raise RangeError("expected %d to %d, found %d" %
                     (self.mincount, self.maxcout, c), ex)
@@ -521,7 +520,7 @@ class Range(Subconstruct):
                 for subobj in obj:
                     self.subcon._build(subobj, stream, context)
                     cnt += 1
-        except ConstructError, ex:
+        except ConstructError as ex:
             if cnt < self.mincount:
                 raise RangeError("expected %d to %d, found %d" %
                     (self.mincount, self.maxcout, len(obj)), ex)
@@ -566,7 +565,7 @@ class RepeatUntil(Subconstruct):
                     obj.append(subobj)
                     if self.predicate(subobj, context):
                         break
-        except ConstructError, ex:
+        except ConstructError as ex:
             raise ArrayError("missing terminator", ex)
         return obj
     def _build(self, obj, stream, context):
@@ -713,7 +712,7 @@ class Sequence(Struct):
             elif sc.name is None:
                 subobj = None
             else:
-                subobj = objiter.next()
+                subobj = next(objiter)
                 context[sc.name] = subobj
             sc._build(subobj, stream, context)
 

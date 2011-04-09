@@ -1,8 +1,8 @@
 """
 Domain Name System (TCP/IP protocol stack)
 """
-from construct import *
-from construct.protocols.layer3.ipv4 import IpAddressAdapter
+from ... import *
+from ..protocols.layer3.ipv4 import IpAddressAdapter
 
 
 class DnsStringAdapter(Adapter):
@@ -133,14 +133,14 @@ if __name__ == "__main__":
     ).decode("hex")
 
     obj = dns.parse(cap1)
-    print obj
-    print repr(dns.build(obj))
+    print(obj)
+    print(repr(dns.build(obj)))
     
-    print "-" * 80
+    print("-" * 80)
     
     obj = dns.parse(cap2)
-    print obj
-    print repr(dns.build(obj))
+    print(obj)
+    print(repr(dns.build(obj)))
     
     
 

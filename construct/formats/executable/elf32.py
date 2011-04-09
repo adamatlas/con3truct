@@ -4,7 +4,7 @@ Used on *nix systems as a replacement of the older a.out format
 
 Big-endian support kindly submitted by Craig McQueen (mcqueen-c#edsrd1!yzk!co!jp)
 """
-from construct import *
+from ... import *
 
 
 def elf32_body(ElfInt16, ElfInt32):
@@ -150,7 +150,7 @@ elf32_file = Struct("elf32_file",
 if __name__ == "__main__":
     obj = elf32_file.parse_stream(open("../../test/_ctypes_test.so", "rb"))
     #[s.data.value for s in obj.sections]
-    print obj
+    print(obj)
 
 
 

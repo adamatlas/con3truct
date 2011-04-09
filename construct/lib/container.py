@@ -60,7 +60,7 @@ class Container(object):
     @recursion_lock("<...>")
     def __repr__(self):
         attrs = sorted("%s = %s" % (k, repr(v))
-            for k, v in self.__dict__.iteritems()
+            for k, v in self.__dict__.items()
             if not k.startswith("_"))
         return "%s(%s)" % (self.__class__.__name__, ", ".join(attrs))
     def __str__(self):
@@ -150,7 +150,7 @@ class AttrDict(object):
         self.__dict__ = kw
     def __contains__(self, key):
         return key in self.__dict__
-    def __nonzero__(self):
+    def __bool__(self):
         return bool(self.__dict__)
     def __repr__(self):
         return repr(self.__dict__)

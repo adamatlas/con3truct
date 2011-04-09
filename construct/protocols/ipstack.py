@@ -4,12 +4,12 @@ Note: before parsing the application layer over a TCP stream, you must
 first combine all the TCP frames into a stream. See utils.tcpip for
 some solutions
 """
-from construct import Struct, Rename, HexDumpAdapter, Field, Switch, Pass
-from construct.protocols.layer2.ethernet import ethernet_header
-from construct.protocols.layer3.ipv4 import ipv4_header
-from construct.protocols.layer3.ipv6 import ipv6_header
-from construct.protocols.layer4.tcp import tcp_header
-from construct.protocols.layer4.udp import udp_header
+from .. import Struct, Rename, HexDumpAdapter, Field, Switch, Pass
+from .layer2.ethernet import ethernet_header
+from .layer3.ipv4 import ipv4_header
+from .layer3.ipv6 import ipv6_header
+from .layer4.tcp import tcp_header
+from .layer4.udp import udp_header
 
 
 layer4_tcp = Struct("layer4_tcp",
@@ -125,11 +125,11 @@ if __name__ == "__main__":
     ).decode("hex")
 
     obj = ip_stack.parse(cap1)
-    print obj
-    print repr(ip_stack.build(obj))
+    print(obj)
+    print(repr(ip_stack.build(obj)))
 
-    print "-" * 80
+    print("-" * 80)
 
     obj = ip_stack.parse(cap2)
-    print obj
-    print repr(ip_stack.build(obj))
+    print(obj)
+    print(repr(ip_stack.build(obj)))

@@ -2,7 +2,7 @@
 Extension 2 (ext2)
 Used in Linux systems
 """
-from construct import *
+from ... import *
 
 
 Char = SLInt8
@@ -132,7 +132,7 @@ directory_record = Struct("directory_entry",
 )
 
 
-print superblock.sizeof()
+print(superblock.sizeof())
 
 
 

@@ -1,5 +1,5 @@
-from construct import *
-from construct.text import *
+from .. import *
+from ..text import *
 
 
 class LineSplitAdapter(Adapter):
@@ -74,15 +74,15 @@ if __name__ == "__main__":
     import time
     t = time.time()
     x = sections.parse(tsvstring)
-    print time.time() - t
+    print(time.time() - t)
     # 43.2030000687 / 3.10899996758 with psyco (x13)
     
     t = time.time()
     s = sections.build(x)
-    print time.time() - t
+    print(time.time() - t)
     # 39.625 / 2.65700006485 with psyco (x14)
     
-    print s == tsvstring
+    print(s == tsvstring)
     # True
 
 

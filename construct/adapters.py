@@ -1,6 +1,7 @@
-from core import Adapter, AdaptationError, Pass
-from lib import int_to_bin, bin_to_int, swap_bytes, StringIO
-from lib import FlagsContainer, HexString
+from io import StringIO
+from .core import Adapter, AdaptationError, Pass
+from .lib import int_to_bin, bin_to_int, swap_bytes
+from .lib import FlagsContainer, HexString
 
 
 #===============================================================================
@@ -115,13 +116,13 @@ class FlagsAdapter(Adapter):
         self.flags = flags
     def _encode(self, obj, context):
         flags = 0
-        for name, value in self.flags.iteritems():
+        for name, value in self.flags.items():
             if getattr(obj, name, False):
                 flags |= value
         return flags
     def _decode(self, obj, context):
         obj2 = FlagsContainer()
-        for name, value in self.flags.iteritems():
+        for name, value in self.flags.items():
             setattr(obj2, name, bool(obj & value))
         return obj2
 

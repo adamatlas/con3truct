@@ -1,9 +1,9 @@
 import unittest
 
-from construct import UBInt8
-from construct import Repeater
-from construct import StrictRepeater, GreedyRepeater, OptionalGreedyRepeater
-from construct import ArrayError, RangeError
+from .. import UBInt8
+from .. import Repeater
+from .. import StrictRepeater, GreedyRepeater, OptionalGreedyRepeater
+from .. import ArrayError, RangeError
 
 class TestRepeater(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import unittest
 
-from construct import Flag
+from .. import Flag
 
 class TestFlag(unittest.TestCase):
 

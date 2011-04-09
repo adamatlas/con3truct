@@ -1,8 +1,6 @@
 import unittest
 
-from construct import Field, UBInt8
-from construct import OneOf, NoneOf, HexDumpAdapter
-from construct import ValidationError
+from .. import Field, UBInt8, OneOf, NoneOf, HexDumpAdapter, ValidationError
 
 class TestHexDumpAdapter(unittest.TestCase):
 

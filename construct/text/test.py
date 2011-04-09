@@ -1,5 +1,5 @@
-from construct import *
-from construct.text import *
+from .. import *
+from ..text import *
 
 
 
@@ -281,7 +281,7 @@ root = RootTransformator(
 
 test = """var x as int, y as int;"""
 
-print vardef.parse(test)
+print(vardef.parse(test))
 
 
 

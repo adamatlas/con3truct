@@ -8,7 +8,7 @@ http://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456
 2006 with updates relevant for .NET:
 http://download.microsoft.com/download/9/c/5/9c5b2167-8017-4bae-9fde-d599bac8184a/pecoff_v8.doc
 """
-from construct import *
+from ... import *
 import time
 
 
@@ -33,11 +33,11 @@ class NamedSequence(Adapter):
     def __init__(self, subcon, mapping):
         Adapter.__init__(self, subcon)
         self.mapping = mapping
-        self.rev_mapping = dict((v, k) for k, v in mapping.iteritems())
+        self.rev_mapping = dict((v, k) for k, v in mapping.items())
     def _encode(self, obj, context):
         d = obj.__dict__
         obj2 = [None] * len(d)
-        for name, value in d.iteritems():
+        for name, value in d.items():
             if name in self.rev_mapping:
                 index = self.rev_mapping[name]
             elif name.startswith("__"):
@@ -404,8 +404,8 @@ pe32_file = Struct("pe32_file",
 
 
 if __name__ == "__main__":
-    print pe32_file.parse_stream(open("../../test/notepad.exe", "rb"))
-    print pe32_file.parse_stream(open("../../test/sqlite3.dll", "rb"))
+    print(pe32_file.parse_stream(open("../../test/notepad.exe", "rb")))
+    print(pe32_file.parse_stream(open("../../test/sqlite3.dll", "rb")))
 
 
 

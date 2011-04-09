@@ -4,7 +4,7 @@ The first sector on disk, contains the partition table, bootloader, et al.
 
 http://www.win.tue.nl/~aeb/partitions/partition_types-1.html
 """
-from construct import *
+from ... import *
 
 
 mbr = Struct("mbr",
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     "000000000000000000000000000000000000000055AA"        
     ).decode("hex")
     
-    print mbr.parse(cap1)
+    print(mbr.parse(cap1))
 
 
 

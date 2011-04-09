@@ -1,4 +1,4 @@
-from construct import *
+from .. import *
 
 
 foo = Struct("foo",
@@ -14,7 +14,7 @@ foo = Struct("foo",
 )
 
 
-print foo.parse("\x01\x02\x03")
+print(foo.parse("\x01\x02\x03"))
 
-print foo.parse("\x01\x04\x03")
+print(foo.parse("\x01\x04\x03"))
 

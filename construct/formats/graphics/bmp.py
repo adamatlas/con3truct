@@ -3,7 +3,7 @@ Windows/OS2 Bitmap (BMP)
 this could have been a perfect show-case file format, but they had to make
 it ugly (all sorts of alignment or 
 """
-from construct import *
+from ... import *
 
 
 #===============================================================================
@@ -39,7 +39,8 @@ uncompressed_pixels = Switch("uncompressed", lambda ctx: ctx.bpp,
 class RunLengthAdapter(Adapter):
     def _encode(self, obj):
         return len(obj), obj[0]
-    def _decode(self, (length, value)):
+    def _decode(self, xxx_todo_changeme):
+        (length, value) = xxx_todo_changeme
         return [value] * length
 
 rle8pixel = RunLengthAdapter(
@@ -108,5 +109,5 @@ bitmap_file = Struct("bitmap_file",
 
 if __name__ == "__main__":
     obj = bitmap_file.parse_stream(open("../../test/bitmap8.bmp", "rb"))
-    print obj 
-    print repr(obj.pixels.value)
+    print(obj) 
+    print(repr(obj.pixels.value))

@@ -1,6 +1,6 @@
 import sys
-from construct import *
-from construct.text import *
+from .. import *
+from ..text import *
 
 
 # some tests require doing bad things...
@@ -330,11 +330,11 @@ def run_tests(tests):
 def run_all():
     errors = run_tests(tests)
     if not errors:
-        print "success"
+        print("success")
     else:
-        print "errors:"
+        print("errors:")
         for e in errors:
-            print "   ", e
+            print("   ", e)
 
 if __name__ == "__main__":
     run_all()

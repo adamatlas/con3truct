@@ -4,8 +4,8 @@ Dynamic Host Configuration Protocol for IPv4
 http://www.networksorcery.com/enp/protocol/dhcp.htm
 http://www.networksorcery.com/enp/protocol/bootp/options.htm
 """
-from construct import *
-from ipv4 import IpAddress
+from ... import *
+from .ipv4 import IpAddress
 
 
 dhcp_option = Struct("dhcp_option",
@@ -193,7 +193,7 @@ if __name__ == "__main__":
         "060811223344aabbccdd"
     ).decode("hex")
     
-    print dhcp_header.parse(test)
+    print(dhcp_header.parse(test))
 
 
 

@@ -1,4 +1,4 @@
-from common import *
-from ast import *
+from .common import *
+from .ast import *
 
 
