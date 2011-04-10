@@ -237,7 +237,7 @@ class Construct(object):
             context = AttrDict()
         try:
             return self._sizeof(context)
-        except Exception, e:
+        except Exception as e:
             raise SizeofError(e)
 
     def _sizeof(self, context):
