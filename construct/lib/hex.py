@@ -1,5 +1,5 @@
-_printable = {chr(i): "." for i in range(256)}
-_printable.update((chr(i), chr(i)) for i in range(32, 128))
+_printable = {i: "." for i in range(256)}
+_printable.update((i, chr(i)) for i in range(32, 128))
 
 def hexdump(data, linesize = 16):
     prettylines = []
